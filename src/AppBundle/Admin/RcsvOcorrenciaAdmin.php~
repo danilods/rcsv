@@ -1,0 +1,252 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+namespace AppBundle\Admin;
+
+/**
+ * Description of RcsvOcorrenciaAdmin
+ *
+ * @author cenipa
+ */
+use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Knp\Menu\ItemInterface as MenuItemInterface;
+
+class RcsvOcorrenciaAdmin extends Admin {
+    //put your code here
+
+    /**
+     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     *
+     * @return void
+     */
+    protected function configureFormFields(FormMapper $formMapper) {
+
+
+
+
+        $formMapper
+                ->tab('Ocorrência')
+                ->with('Dados do RCSV')
+                ->add('situacaoRcsv')
+                ->add('tipoReporte')
+                ->add('cidade', 'sonata_type_model_autocomplete', array(
+                    'property' => array('nome', 'latitude', 'longitude'),
+                    //'class' => 'col-md-9',
+                    'placeholder' => 'Clique e selecione um município',
+                    'minimum_input_length' => 1,
+                    'to_string_callback' => function($enitity, $property) {
+                return $enitity->getNome() . ' - ' . $enitity->getUf()->getNome() . ' - ' . $enitity->getPais()->getNome();
+            },
+                ))
+                // ->add('cidade', 'entity', array('attr'=>array('data-sonata-select2-allow-clear'=>'true'),'class' => 'AppBundle\Entity\GeografiaCidade'))               
+                ->add('aerodromo', 'sonata_type_model_autocomplete', array(
+                    'property' => array('nome', 'icao', 'iata'),
+                    //'class' => 'col-md-9',
+                    'placeholder' => 'Clique e selecione um Aeródromo',
+                    'minimum_input_length' => 1,
+                    'to_string_callback' => function($enitity, $property) {
+                return $enitity->getIcao() . ' - ' . $enitity->getIata() . ' - ' . $enitity->getNome() . ' - ' . $enitity->getCidade()->getNome();
+            },
+                ))
+                //->add('aerodromo', 'entity', array('attr'=>array('data-sonata-select2-allow-clear'=>'true'),'class' => 'Cenipa\UserBundle\Entity\AerodromoGeral'))
+                ->add('dataOcorrencia', 'sonata_type_date_picker', array('format' => 'dd/MM/yyyy',
+                    'dp_language' => 'pt',
+                    'attr' => array('class' => 'col-sm-3')))
+                ->add('horaLocal')
+                ->add('rcsvHistorico')
+                ->add('tipoNotificador', 'entity', array('class' => 'AppBundle\Entity\RcsvFuncaoNotificador'))
+                // ->add('ocorrencia' ,'sonata_type_model', array('expanded' => true))
+                ->add('classificacao', 'entity', array('class' => 'AppBundle\Entity\RcsvTaxonomiaClassificacao'))
+
+                //  ->add('ocorrenciaTipo', 'sonata_type_model_list')
+              
+                ->add('notificadorOcorrencia', 'sonata_type_collection', array(
+                    'required' => true,
+                    'type_options' => array(
+                        'delete' => true,
+                        'cascade_validation' => true
+                    ),
+                    'by_reference' => true,
+                    'mapped' => true
+                        ), array(
+                    'edit' => 'inline',
+                    'inline' => 'inline',
+                    'sortable' => 'position',
+                        //   'targetEntity'  => 'Cenipa\UserBundle\Entity\OcorrenciaAeronave',
+                        //   'admin_code'    => 'sonata.admin.ocorrencia_aeronave'
+                ))
+               
+                    
+                    
+                    
+                ->add('ocorrenciaTipo', 'sonata_type_collection', array(
+                    'required' => true,
+                    'type_options' => array(
+                        'delete' => true,
+                        'cascade_validation' => true
+                    ),
+                    'by_reference' => true,
+                    'mapped' => true
+                        ), array(
+                    'edit' => 'inline',
+                    'inline' => 'inline',
+                    'sortable' => 'position',
+                        //   'targetEntity'  => 'Cenipa\UserBundle\Entity\OcorrenciaAeronave',
+                        //   'admin_code'    => 'sonata.admin.ocorrencia_aeronave'
+                ))
+                ->end()
+                ->end()
+                ->tab('Controle')
+                ->with('Administração dos dados do RCSV')
+               ->add('ocorrenciaControle', 'sonata_type_collection', array(
+                    'required' => true,
+                    'type_options' => array(
+                        'delete' => true,
+                        'cascade_validation' => true
+                    ),
+                    'by_reference' => true,
+                    'mapped' => true
+                        ), array(
+                    'edit' => 'inline',
+                    'inline' => 'inline',
+                    'sortable' => 'position',
+                        //   'targetEntity'  => 'Cenipa\UserBundle\Entity\OcorrenciaAeronave',
+                        //   'admin_code'    => 'sonata.admin.ocorrencia_aeronave'
+                ))
+                ->end()
+                ->end()
+                ->tab('Documentos da Ocorrência')
+                ->with('Anexos')
+                ->add('ocorrenciaAnexos', 'sonata_type_collection', array(
+                    'required' => true,
+                    'type_options' => array(
+                        'delete' => true,
+                        'cascade_validation' => true
+                    ),
+                    'by_reference' => true,
+                    'mapped' => true
+                        ), array(
+                    'edit' => 'inline',
+                    'inline' => 'inline',
+                    'sortable' => 'position',
+                        //   'targetEntity'  => 'Cenipa\UserBundle\Entity\OcorrenciaAeronave',
+                        //   'admin_code'    => 'sonata.admin.ocorrencia_aeronave'
+                ))
+                ->end()
+                ->end();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ;
+    }
+
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     *
+     * @return void
+     */
+    protected function configureListFields(ListMapper $listMapper) {
+        $listMapper
+                ->addIdentifier('id')
+                ->add('dataOcorrencia')
+                ->add('horaLocal')
+                ->add('cidade', 'entity', array('class' => 'Cenipa\UserBundle\Entity\GeografiaCidade'))
+                ->add('tipo', 'entity', array('class' => 'Cenipa\UserBundle\Entity\TaxonomiaTipo'))
+                ->add('aerodromo', 'entity', array('class' => 'Cenipa\UserBundle\Entity\AerodromoGeral'))
+                ->add('_action', 'actions', array(
+                    'actions' => array(
+                        'show' => array(),
+                        'edit' => array(),
+                        'delete' => array(),
+                    )
+                ))
+        ;
+    }
+
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     *
+     * @return void
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper) {
+        $datagridMapper->add('cidade')
+
+        ;
+    }
+
+    public function prePersist($object) {
+
+
+        foreach ($object->getNotificadorOcorrencia() as $notificador) {
+
+           $notificador->setOcorrencia($object);
+        }
+
+       
+        
+        foreach ($object->getOcorrenciaControle() as $ocorrencia) {
+
+            $ocorrencia->setOcorrencia($object);
+        }
+        
+        
+        
+    }
+
+ public function preUpdate($object) {
+
+
+        foreach ($object->getNotificadorOcorrencia() as $notificador) {
+
+           $notificador->setOcorrencia($object);
+        }
+
+       
+        
+        foreach ($object->getOcorrenciaControle() as $controle) {
+
+            $controle->setOcorrencia($object);
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+
+}

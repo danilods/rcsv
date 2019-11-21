@@ -1,0 +1,49 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FaunaClassificacaoOrdem
+ *
+ * @ORM\Table(name="fauna_classificacao_ordem", indexes={@ORM\Index(name="fk_classificacao_ordem_classificacao_classe1_idx", columns={"classificacao_classe_id"})})
+ * @ORM\Entity
+ */
+class FaunaClassificacaoOrdem
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_ordem", type="string", length=100, nullable=true)
+     */
+    private $nomeOrdem;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacao", type="string", length=100, nullable=true)
+     */
+    private $observacao;
+
+    /**
+     * @var \FaunaClassificacaoClasse
+     *
+     * @ORM\ManyToOne(targetEntity="FaunaClassificacaoClasse")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="classificacao_classe_id", referencedColumnName="id")
+     * })
+     */
+    private $classificacaoClasse;
+
+
+}

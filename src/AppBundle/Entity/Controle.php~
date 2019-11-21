@@ -1,0 +1,88 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Controle
+ *
+ * @ORM\Table(name="controle", indexes={@ORM\Index(name="fk_rcsv_controle_ocorrencia_rcsv1_idx", columns={"ocorrencia_id"})})
+ * @ORM\Entity
+ */
+class Controle
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rcsv_despacho", type="string", length=150, nullable=true)
+     */
+    private $rcsvDespacho;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dia_encaminhamento", type="date", nullable=true)
+     */
+    private $diaEncaminhamento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="obs_encaminhamento", type="text", length=65535, nullable=true)
+     */
+    private $obsEncaminhamento;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ocorrencia_id", type="integer", nullable=true)
+     */
+    private $ocorrenciaId;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="registrado_em", type="datetime", nullable=true)
+     */
+    private $registradoEm;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="anexo_controle", type="string", length=255, nullable=true)
+     */
+    private $anexoControle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     */
+    private $photo;
+
+
+}

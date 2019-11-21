@@ -1,0 +1,119 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BalaoOcorrenciaGeral
+ *
+ * @ORM\Table(name="balao_ocorrencia_geral", indexes={@ORM\Index(name="fk_ocorrencia_balao_ocorrencia1_idx", columns={"ocorrencia_id"})})
+ * @ORM\Entity
+ */
+class BalaoOcorrenciaGeral
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="altitude", type="string", length=15, nullable=true)
+     */
+    private $altitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="altitude_metros", type="string", length=15, nullable=true)
+     */
+    private $altitudeMetros;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="posicao_relativa", type="string", length=15, nullable=true)
+     */
+    private $posicaoRelativa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="distancia_estimada_relativa", type="string", length=45, nullable=true)
+     */
+    private $distanciaEstimadaRelativa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=15, nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=15, nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="distancia_fixo", type="string", length=15, nullable=true)
+     */
+    private $distanciaFixo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="distancia_ponto_conhecido", type="string", length=45, nullable=true)
+     */
+    private $distanciaPontoConhecido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sentido_deslocamento", type="string", length=45, nullable=true)
+     */
+    private $sentidoDeslocamento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tamanho_balao", type="string", length=45, nullable=true)
+     */
+    private $tamanhoBalao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="balao_fogo", type="string", length=5, nullable=true)
+     */
+    private $balaoFogo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="carga_suspensa", type="string", length=45, nullable=true)
+     */
+    private $cargaSuspensa;
+
+    /**
+     * @var \BalaoOcorrencia
+     *
+     * @ORM\ManyToOne(targetEntity="BalaoOcorrencia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrencia;
+
+
+}

@@ -1,0 +1,56 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RcsvArquivos
+ *
+ * @ORM\Table(name="rcsv_arquivos", indexes={@ORM\Index(name="fk_rcsv_arquivos_rcsv_ocorrencia1_idx", columns={"ocorrencia_id"})})
+ * @ORM\Entity
+ */
+class RcsvArquivos
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo", type="string", length=45, nullable=true)
+     */
+    private $tipo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_arquivo", type="string", length=45, nullable=true)
+     */
+    private $nomeArquivo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data", type="datetime", nullable=true)
+     */
+    private $data;
+
+    /**
+     * @var \RcsvOcorrencia
+     *
+     * @ORM\ManyToOne(targetEntity="RcsvOcorrencia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrencia;
+
+
+}

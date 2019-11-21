@@ -1,0 +1,32 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TrafficFooterWidgetsMedias
+ *
+ * @ORM\Table(name="traffic_footer_widgets_medias")
+ * @ORM\Entity
+ */
+class TrafficFooterWidgetsMedias
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="media_id", type="integer", nullable=true)
+     */
+    private $mediaId;
+
+
+}

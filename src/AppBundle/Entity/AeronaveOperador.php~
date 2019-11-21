@@ -1,0 +1,126 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AeronaveOperador
+ *
+ * @ORM\Table(name="aeronave_operador", uniqueConstraints={@ORM\UniqueConstraint(name="nome_operador", columns={"nome_operador"})}, indexes={@ORM\Index(name="aeronave_operador_51020e6f", columns={"cidade_id"}), @ORM\Index(name="aeronave_operador_afg45", columns={"cadastrado_por_id"})})
+ * @ORM\Entity
+ */
+class AeronaveOperador
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_operador", type="string", length=100, nullable=false)
+     */
+    private $nomeOperador;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_codigo", type="string", length=30, nullable=true)
+     */
+    private $nomeCodigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cpf_cnpj", type="string", length=20, nullable=true)
+     */
+    private $cpfCnpj;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="endereco", type="string", length=200, nullable=true)
+     */
+    private $endereco;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cep", type="string", length=100, nullable=true)
+     */
+    private $cep;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone1", type="string", length=100, nullable=true)
+     */
+    private $telefone1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone2", type="string", length=100, nullable=true)
+     */
+    private $telefone2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="atividade_principal", type="string", length=50, nullable=false)
+     */
+    private $atividadePrincipal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="membro_cnpaa", type="string", length=10, nullable=false)
+     */
+    private $membroCnpaa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="elo_sipaer", type="string", length=20, nullable=false)
+     */
+    private $eloSipaer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacoes", type="text", nullable=true)
+     */
+    private $observacoes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cadastrado_por_id", type="integer", nullable=true)
+     */
+    private $cadastradoPorId;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="cadastrado_em", type="date", nullable=false)
+     */
+    private $cadastradoEm;
+
+    /**
+     * @var \GeografiaCidade
+     *
+     * @ORM\ManyToOne(targetEntity="GeografiaCidade")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cidade_id", referencedColumnName="id")
+     * })
+     */
+    private $cidade;
+
+
+}

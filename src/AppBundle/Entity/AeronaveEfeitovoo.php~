@@ -1,0 +1,52 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AeronaveEfeitovoo
+ *
+ * @ORM\Table(name="aeronave_efeitovoo", indexes={@ORM\Index(name="fk_aeronave_efeitovoo_taxonomia_efeitovoo1_idx", columns={"efeitovoo_id"}), @ORM\Index(name="fk_aeronave_efeitovoo_ocorrencia_aeronave_fauna1_idx", columns={"aeronave_fauna_id"})})
+ * @ORM\Entity
+ */
+class AeronaveEfeitovoo
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="outros_efeitos", type="string", length=100, nullable=true)
+     */
+    private $outrosEfeitos;
+
+    /**
+     * @var \TaxonomiaEfeitovoo
+     *
+     * @ORM\ManyToOne(targetEntity="TaxonomiaEfeitovoo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="efeitovoo_id", referencedColumnName="id")
+     * })
+     */
+    private $efeitovoo;
+
+    /**
+     * @var \FaunaOcorrenciaAeronave
+     *
+     * @ORM\ManyToOne(targetEntity="FaunaOcorrenciaAeronave")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="aeronave_fauna_id", referencedColumnName="id")
+     * })
+     */
+    private $aeronaveFauna;
+
+
+}

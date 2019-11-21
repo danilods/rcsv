@@ -1,0 +1,139 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FaunaOcorrenciaGeral
+ *
+ * @ORM\Table(name="fauna_ocorrencia_geral", indexes={@ORM\Index(name="fk_ocorrencia_fauna_aerodromo_geral1_idx", columns={"aerodromo_id"}), @ORM\Index(name="fk_ocorrencia_fauna_taxonomia_tipo_evento1_idx", columns={"tipo_evento_id"}), @ORM\Index(name="fk_ocorrencia_fauna_geografia_cidade1_idx", columns={"cidade_id"})})
+ * @ORM\Entity
+ */
+class FaunaOcorrenciaGeral
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="identificacao", type="string", length=100, nullable=true)
+     */
+    private $identificacao;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="hora_local", type="time", nullable=true)
+     */
+    private $horaLocal;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="hora_utc", type="time", nullable=true)
+     */
+    private $horaUtc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="periodo_dia", type="string", length=50, nullable=true)
+     */
+    private $periodoDia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="area_asa", type="string", length=15, nullable=true)
+     */
+    private $areaAsa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=15, nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=15, nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="radial", type="string", length=15, nullable=true)
+     */
+    private $radial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="milhas_nauticas", type="string", length=15, nullable=true)
+     */
+    private $milhasNauticas;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condicao_ceu", type="string", length=50, nullable=true)
+     */
+    private $condicaoCeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="precipitacao", type="string", length=5, nullable=true)
+     */
+    private $precipitacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacoes_adicionais", type="text", length=65535, nullable=true)
+     */
+    private $observacoesAdicionais;
+
+    /**
+     * @var \AerodromoGeral
+     *
+     * @ORM\ManyToOne(targetEntity="AerodromoGeral")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="aerodromo_id", referencedColumnName="id")
+     * })
+     */
+    private $aerodromo;
+
+    /**
+     * @var \GeografiaCidade
+     *
+     * @ORM\ManyToOne(targetEntity="GeografiaCidade")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cidade_id", referencedColumnName="id")
+     * })
+     */
+    private $cidade;
+
+    /**
+     * @var \TaxonomiaTipoEvento
+     *
+     * @ORM\ManyToOne(targetEntity="TaxonomiaTipoEvento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_evento_id", referencedColumnName="id")
+     * })
+     */
+    private $tipoEvento;
+
+
+}

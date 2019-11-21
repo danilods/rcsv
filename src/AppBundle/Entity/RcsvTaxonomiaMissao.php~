@@ -1,0 +1,39 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RcsvTaxonomiaMissao
+ *
+ * @ORM\Table(name="rcsv_taxonomia_missao")
+ * @ORM\Entity
+ */
+class RcsvTaxonomiaMissao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_missao", type="string", length=100, nullable=true)
+     */
+    private $tipoMissao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descricao_missao", type="string", length=100, nullable=true)
+     */
+    private $descricaoMissao;
+
+
+}

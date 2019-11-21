@@ -1,0 +1,211 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+        security.acl.permission.map.class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
+
+services:
+       
+            
+            
+        admin_aerodromo:
+            class: AppBundle\Admin\AerodromoGeralAdmin
+            arguments: [~, AppBundle\Entity\AerodromoGeral, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Aerodromo }
+                
+        admin_cidade:
+            class: AppBundle\Admin\GeografiaCidadeAdmin
+            arguments: [~, AppBundle\Entity\GeografiaCidade, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Cidade }
+        
+        admin_uf:
+            class: AppBundle\Admin\GeografiaUfAdmin
+            arguments: [~, AppBundle\Entity\GeografiaUf, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Estado }
+                
+        
+        admin_aeronave_operador:
+            class: AppBundle\Admin\AeronaveOperadorAdmin
+            arguments: [~, AppBundle\Entity\AeronaveOperador, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Operador }
+        
+        admin_rcsv_area_ocorrencia:
+            class: AppBundle\Admin\RcsvAreaOcorrenciaAdmin
+            arguments: [~, AppBundle\Entity\RcsvAreaOcorrencia, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Área Ocorrência }
+        
+       
+                
+        admin_rcsv_classificacao:
+            class: AppBundle\Admin\RcsvTaxonomiaClassificacaoAdmin
+            arguments: [~, AppBundle\Entity\RcsvTaxonomiaClassificacao, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Classificação Ocorrência }
+        
+        admin_rcsv_notificador_tipo:
+            class: AppBundle\Admin\RcsvNotificadorTipoAdmin
+            arguments: [~, AppBundle\Entity\RcsvTaxonomiaNotificadorTipo, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Taxonomias", label: Taxonomia tipo notificador }
+        admin_rcsv_funcao_notificador:
+            class: AppBundle\Admin\RcsvFuncaoNotificadorAdmin
+            arguments: [~, AppBundle\Entity\RcsvFuncaoNotificador, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Taxonomia função notificador }
+                
+        admin_rcsv_taxonomia_missao:
+            class: AppBundle\Admin\RcsvTaxonomiaMissaoAdmin
+            arguments: [~, AppBundle\Entity\RcsvTaxonomiaMissao, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Taxonomia Missão }
+                
+        admin_rcsv_missao_tipo:
+            class: AppBundle\Admin\RcsvMissaoTipoAdmin
+            arguments: [~, AppBundle\Entity\RcsvMissaoTipo, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Taxonomia Tipo de Missão }
+        
+        admin_rcsv_taxonomia_situacao_observada:
+            class: AppBundle\Admin\RcsvSituacaoObservadaAdmin
+            arguments: [~, AppBundle\Entity\RcsvTaxonomiaSituacaoObservada, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Detalhe situação observada }
+        
+        admin_rcsv_taxonomia_tipo_situacao_observada:
+            class: AppBundle\Admin\RcsvTipoSituacaoObservadaAdmin
+            arguments: [~, AppBundle\Entity\RcsvTaxonomiaTipoSituacaoObservada, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Tipo situação observada }
+        
+       
+        admin_rcsv_consequencia_ocorrencia:
+            class: AppBundle\Admin\RcsvTaxonomiaConsequenciaAdmin
+            arguments: [~, AppBundle\Entity\RcsvTaxonomiaConsequenciaOcorrencia, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Taxonomia consequência ocorrência }
+                
+        admin_rcsv_notificador:
+            class: AppBundle\Admin\RcsvNotificadorAdmin
+            arguments: [~, AppBundle\Entity\RcsvNotificador, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Notificador }
+                
+        rcsv_ocorrencia:
+           class: AppBundle\Admin\RcsvOcorrenciaAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrencia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm,group: "RCSV", label: Consulta de Ocorrências }
+        
+        rcsv_entrada_ocorrencia:
+           class: AppBundle\Admin\RcsvEntradaAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrencia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm,  group: "RCSV", label: Caixa de entrada} 
+           
+               
+        rcsv_aguardando_ocorrencia:
+           class: AppBundle\Admin\AguardandoAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrencia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm,  group: "RCSV", label: Aguardando Resposta Civil}
+        
+        
+        rcsv_aguardando_nova_ocorrencia:
+           class: AppBundle\Admin\AguardandoNovaCivilAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrencia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm,  group: "RCSV", label: Aguardando 2ª Resposta Civil}
+               
+        rcsv_aguardando_ocorrencia_militar:
+           class: AppBundle\Admin\AguardandoMilitarAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrencia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm,  group: "RCSV", label: Aguardando Resposta Militar}
+               
+        rcsv_aguardando_nova_militar_ocorrencia:
+           class: AppBundle\Admin\AguardandoNovaMilitarAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrencia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm,  group: "RCSV", label: Aguardando 2ª Resposta Militar}
+               
+               
+        rcsv_denuncia_ocorrencia:
+           class: AppBundle\Admin\DenunciaAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrencia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm,  group: "RCSV", label: Denúncias}
+        
+        admin_rcsv_ocorrencia_encerrada:
+           class: AppBundle\Admin\RcsvEncerradoAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrencia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "RCSV",label: Arquivados }
+        
+        admin_rcsv_elos_sipaer:
+           class: AppBundle\Admin\ElosAdmin
+           arguments: [~, AppBundle\Entity\RcsvElosSipaer, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "RCSV",label: Elos Sipaer }
+        
+        rcsv_lixeira_ocorrencia:
+           class: AppBundle\Admin\LixeiraAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrencia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm,  group: "RCSV", label: Lixeira}
+       
+        admin_rcsv_ocorrencia_tipo:
+           class: AppBundle\Admin\RcsvOcorrenciaTipoAdmin
+           arguments: [~, AppBundle\Entity\RcsvOcorrenciaTipo, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Tipo Ocorrência }
+        
+        
+        admin_aeronave:
+           class: AppBundle\Admin\AeronaveGeralAdmin
+           arguments: [~, AppBundle\Entity\AeronaveGeral, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Aeronave }
+        
+        admin_aeronave_categoria:
+           class: AppBundle\Admin\AeronaveCategoriaAdmin
+           arguments: [~, AppBundle\Entity\AeronaveCategoria, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm,group: "Taxonomias", label: Aeronave Categoria}
+               
+        admin_rcsv_controle:
+           class: AppBundle\Admin\RcsvControleAdmin
+           arguments: [~, AppBundle\Entity\RcsvControle, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Controle}
+        
+        admin_rcsv_periodo_dia:
+           class: AppBundle\Admin\RcsvTaxonomiaPeriodoDiaAdmin
+           arguments: [~, AppBundle\Entity\RcsvTaxonomiaPeriodoDia, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Taxonomia Periodo dia}
+        
+        admin_rcsv_condicoes_voo:
+           class: AppBundle\Admin\RcsvTaxonomiaCondicoesVooAdmin
+           arguments: [~, AppBundle\Entity\RcsvTaxonomiaCondicoesVoo, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Condições de Voo}
+               
+        admin_rcsv_condicoes_voo:
+           class: AppBundle\Admin\RcsvTaxonomiaCondicoesMeteorologicasAdmin
+           arguments: [~, AppBundle\Entity\RcsvTaxonomiaCondicoesMeteorologicas, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Condições Meteorológicas}
+        
+        admin_rcsv_condicoes_local_trabalho:
+           class: AppBundle\Admin\RcsvTaxonomiaCondicoesLocalTrabalhoAdmin
+           arguments: [~, AppBundle\Entity\RcsvTaxonomiaCondicoesLocalTrabalho, ~]
+           tags:
+               - { name: sonata.admin, manager_type: orm, group: "Taxonomias",label: Condições Local trabalho}
+               
+              
+     

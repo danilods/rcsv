@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: 3306
+    database_name: rcsv32
+    database_user: root
+    database_password: M@ndr@k3
+    mailer_transport: smtp
+    mailer_host: smtp.sendgrid.net
+    mailer_user: pottersoft
+    mailer_password: L3G@cy3mbra3R
+    secret: ThisTokenIsNotSoSecretChangeIt

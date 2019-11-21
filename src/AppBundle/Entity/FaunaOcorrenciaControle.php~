@@ -1,0 +1,63 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FaunaOcorrenciaControle
+ *
+ * @ORM\Table(name="fauna_ocorrencia_controle", indexes={@ORM\Index(name="fk_ocorrencia_controle_fauna_ocorrencia_fauna1_idx", columns={"ocorrencia_fauna_id"})})
+ * @ORM\Entity
+ */
+class FaunaOcorrenciaControle
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=45, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_aprovacao", type="date", nullable=true)
+     */
+    private $dataAprovacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacoes", type="string", length=255, nullable=true)
+     */
+    private $observacoes;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="registro_em", type="datetime", nullable=true)
+     */
+    private $registroEm;
+
+    /**
+     * @var \FaunaOcorrenciaGeral
+     *
+     * @ORM\ManyToOne(targetEntity="FaunaOcorrenciaGeral")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_fauna_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrenciaFauna;
+
+
+}

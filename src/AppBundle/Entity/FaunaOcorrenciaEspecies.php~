@@ -1,0 +1,87 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FaunaOcorrenciaEspecies
+ *
+ * @ORM\Table(name="fauna_ocorrencia_especies", indexes={@ORM\Index(name="fk_ocorrencia_especimes_taxonomia_especimes1_idx", columns={"especimes_id"}), @ORM\Index(name="fk_ocorrencia_especimes_ocorrencia_fauna1_idx", columns={"ocorrencia_fauna_id"})})
+ * @ORM\Entity
+ */
+class FaunaOcorrenciaEspecies
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="coletadas_dna", type="string", length=5, nullable=true)
+     */
+    private $coletadasDna;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="enviadas_dna", type="string", length=5, nullable=true)
+     */
+    private $enviadasDna;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fotografadas", type="string", length=5, nullable=true)
+     */
+    private $fotografadas;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fotos_enviadas_identifcacao", type="string", length=5, nullable=true)
+     */
+    private $fotosEnviadasIdentifcacao;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="num_especimes_avistadas", type="integer", nullable=true)
+     */
+    private $numEspecimesAvistadas;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="num_especimes_atingidas", type="integer", nullable=true)
+     */
+    private $numEspecimesAtingidas;
+
+    /**
+     * @var \FaunaOcorrenciaGeral
+     *
+     * @ORM\ManyToOne(targetEntity="FaunaOcorrenciaGeral")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_fauna_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrenciaFauna;
+
+    /**
+     * @var \TaxonomiaEspecimes
+     *
+     * @ORM\ManyToOne(targetEntity="TaxonomiaEspecimes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="especimes_id", referencedColumnName="id")
+     * })
+     */
+    private $especimes;
+
+
+}

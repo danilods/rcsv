@@ -1,0 +1,113 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FaunaOcorrenciaAeronave
+ *
+ * @ORM\Table(name="fauna_ocorrencia_aeronave", indexes={@ORM\Index(name="fk_ocorrencia_aeronave_fauna_ocorrencia_fauna1_idx", columns={"ocorrencia_fauna_id"}), @ORM\Index(name="fk_ocorrencia_aeronave_fauna_aeronave_operador1_idx", columns={"operador_id"}), @ORM\Index(name="fk_ocorrencia_aeronave_fauna_aeronave_geral1_idx", columns={"aeronave_id"}), @ORM\Index(name="fk_ocorrencia_aeronave_fauna_aeronave_categoria1_idx", columns={"aeronave_categoria_id"}), @ORM\Index(name="fk_ocorrencia_aeronave_fauna_taxonomia_fasevoo1_idx", columns={"fasevoo_id"}), @ORM\Index(name="fk_ocorrencia_aeronave_fauna_taxonomia_tripulacao_tipo_aler_idx", columns={"tipo_alerta_id"})})
+ * @ORM\Entity
+ */
+class FaunaOcorrenciaAeronave
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="altura", type="string", length=15, nullable=true)
+     */
+    private $altura;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="velocidade", type="string", length=15, nullable=true)
+     */
+    private $velocidade;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custo_indireto", type="string", length=45, nullable=true)
+     */
+    private $custoIndireto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custo_direto", type="string", length=45, nullable=true)
+     */
+    private $custoDireto;
+
+    /**
+     * @var \AeronaveCategoria
+     *
+     * @ORM\ManyToOne(targetEntity="AeronaveCategoria")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="aeronave_categoria_id", referencedColumnName="id")
+     * })
+     */
+    private $aeronaveCategoria;
+
+    /**
+     * @var \AeronaveGeral
+     *
+     * @ORM\ManyToOne(targetEntity="AeronaveGeral")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="aeronave_id", referencedColumnName="id")
+     * })
+     */
+    private $aeronave;
+
+    /**
+     * @var \AeronaveOperador
+     *
+     * @ORM\ManyToOne(targetEntity="AeronaveOperador")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="operador_id", referencedColumnName="id")
+     * })
+     */
+    private $operador;
+
+    /**
+     * @var \FaunaOcorrenciaGeral
+     *
+     * @ORM\ManyToOne(targetEntity="FaunaOcorrenciaGeral")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_fauna_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrenciaFauna;
+
+    /**
+     * @var \TaxonomiaFasevoo
+     *
+     * @ORM\ManyToOne(targetEntity="TaxonomiaFasevoo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fasevoo_id", referencedColumnName="id")
+     * })
+     */
+    private $fasevoo;
+
+    /**
+     * @var \TaxonomiaTripulacaoTipoAlerta
+     *
+     * @ORM\ManyToOne(targetEntity="TaxonomiaTripulacaoTipoAlerta")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_alerta_id", referencedColumnName="id")
+     * })
+     */
+    private $tipoAlerta;
+
+
+}

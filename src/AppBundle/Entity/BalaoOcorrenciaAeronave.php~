@@ -1,0 +1,131 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BalaoOcorrenciaAeronave
+ *
+ * @ORM\Table(name="balao_ocorrencia_aeronave", indexes={@ORM\Index(name="fk_ocorrencia_aeronave_ocorrencia1_idx", columns={"ocorrencia_id"}), @ORM\Index(name="fk_ocorrencia_aeronave_aeronave_geral1_idx", columns={"aeronave_id"}), @ORM\Index(name="fk_ocorrencia_aeronave_taxonomia_fasevoo1_idx", columns={"fasevoo_id"}), @ORM\Index(name="fk_ocorrencia_aeronave_balao_taxonomia_efeitovoo1_idx", columns={"efeitovoo_id"}), @ORM\Index(name="fk_ocorrencia_aeronave_balao_aeronave_operador1_idx", columns={"operador_id"})})
+ * @ORM\Entity
+ */
+class BalaoOcorrenciaAeronave
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="altitude", type="string", length=45, nullable=true)
+     */
+    private $altitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="proa_curso", type="string", length=45, nullable=true)
+     */
+    private $proaCurso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=45, nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=45, nullable=true)
+     */
+    private $longitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="radial", type="string", length=15, nullable=true)
+     */
+    private $radial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="distancia_fixo", type="string", length=15, nullable=true)
+     */
+    private $distanciaFixo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="distancia_ponto_conhecido", type="string", length=15, nullable=true)
+     */
+    private $distanciaPontoConhecido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_alerta_presencao_balao", type="string", length=50, nullable=true)
+     */
+    private $tipoAlertaPresencaoBalao;
+
+    /**
+     * @var \AeronaveGeral
+     *
+     * @ORM\ManyToOne(targetEntity="AeronaveGeral")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="aeronave_id", referencedColumnName="id")
+     * })
+     */
+    private $aeronave;
+
+    /**
+     * @var \AeronaveOperador
+     *
+     * @ORM\ManyToOne(targetEntity="AeronaveOperador")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="operador_id", referencedColumnName="id")
+     * })
+     */
+    private $operador;
+
+    /**
+     * @var \TaxonomiaEfeitovoo
+     *
+     * @ORM\ManyToOne(targetEntity="TaxonomiaEfeitovoo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="efeitovoo_id", referencedColumnName="id")
+     * })
+     */
+    private $efeitovoo;
+
+    /**
+     * @var \BalaoOcorrencia
+     *
+     * @ORM\ManyToOne(targetEntity="BalaoOcorrencia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrencia;
+
+    /**
+     * @var \TaxonomiaFasevoo
+     *
+     * @ORM\ManyToOne(targetEntity="TaxonomiaFasevoo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fasevoo_id", referencedColumnName="id")
+     * })
+     */
+    private $fasevoo;
+
+
+}

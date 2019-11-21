@@ -1,0 +1,49 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RcsvTaxonomiaClassificacao
+ *
+ * @ORM\Table(name="rcsv_taxonomia_classificacao", indexes={@ORM\Index(name="fk_rcsv_taxonomia_classificacao_rscv_area_ocorrencia1_idx", columns={"area_ocorrencia_id"})})
+ * @ORM\Entity
+ */
+class RcsvTaxonomiaClassificacao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="classificacao_nome", type="string", length=100, nullable=true)
+     */
+    private $classificacaoNome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="area_ocorrencia", type="string", length=45, nullable=true)
+     */
+    private $areaOcorrencia;
+
+    /**
+     * @var \RcsvAreaOcorrencia
+     *
+     * @ORM\ManyToOne(targetEntity="RcsvAreaOcorrencia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="area_ocorrencia_id", referencedColumnName="id")
+     * })
+     */
+    private $areaOcorrencia2;
+
+
+}

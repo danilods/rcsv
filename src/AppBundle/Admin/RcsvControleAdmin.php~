@@ -1,0 +1,93 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+namespace AppBundle\Admin;
+
+/**
+ * Description of RcsvControleAdmin
+ *
+ * @author cenipa
+ */
+
+use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+
+use Knp\Menu\ItemInterface as MenuItemInterface;
+
+class RcsvControleAdmin extends Admin{
+    //put your code here
+    
+    
+   
+
+    /**
+     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     *
+     * @return void
+     */
+    protected function configureFormFields(FormMapper $formMapper) {
+
+         
+        
+        
+        $formMapper
+                ->tab('Controle')
+                
+             
+                ->add('rcsvDespacho')
+                ->add('diaEncaminhamento')
+                ->add('obsEncaminhamento')
+                   ->add('media', 'sonata_media_type', array(
+                 'provider' => 'sonata.media.provider.file',
+                 'context'  => 'default'
+            ))
+               
+              
+               
+                           
+               
+                
+                
+               ->end()
+                    
+                    
+                  
+                    
+                    
+
+        ;
+    }
+
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     *
+     * @return void
+     */
+    protected function configureListFields(ListMapper $listMapper) {
+        $listMapper
+                 ->addIdentifier('diaFeedback')
+                ->add('diaEncaminhamento')
+                ->add('obsEncaminhamento')
+               
+                ->add('rcsvDespacho')
+              
+        ;
+    }
+
+    /**
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     *
+     * @return void
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper) {
+     
+    }
+}

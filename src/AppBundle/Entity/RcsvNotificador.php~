@@ -1,0 +1,77 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RcsvNotificador
+ *
+ * @ORM\Table(name="rcsv_notificador", indexes={@ORM\Index(name="fk_rcsv_notificador_rcsv_ocorrencia1_idx", columns={"ocorrencia_id"})})
+ * @ORM\Entity
+ */
+class RcsvNotificador
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=45, nullable=true)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cpf", type="string", length=45, nullable=true)
+     */
+    private $cpf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone", type="string", length=45, nullable=true)
+     */
+    private $telefone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=45, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="num_habilitacao", type="string", length=45, nullable=true)
+     */
+    private $numHabilitacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="orgao_empresa", type="string", length=45, nullable=true)
+     */
+    private $orgaoEmpresa;
+
+    /**
+     * @var \RcsvOcorrencia
+     *
+     * @ORM\ManyToOne(targetEntity="RcsvOcorrencia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrencia;
+
+
+}

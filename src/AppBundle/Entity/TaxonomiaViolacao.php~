@@ -1,0 +1,53 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TaxonomiaViolacao
+ *
+ * @ORM\Table(name="taxonomia_violacao", uniqueConstraints={@ORM\UniqueConstraint(name="tipo", columns={"tipo"}), @ORM\UniqueConstraint(name="tipo_codigo", columns={"tipo_codigo"})})
+ * @ORM\Entity
+ */
+class TaxonomiaViolacao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo", type="string", length=150, nullable=false)
+     */
+    private $tipo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_codigo", type="string", length=5, nullable=false)
+     */
+    private $tipoCodigo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="area", type="string", length=100, nullable=false)
+     */
+    private $area;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="area_codigo", type="string", length=5, nullable=false)
+     */
+    private $areaCodigo;
+
+
+}

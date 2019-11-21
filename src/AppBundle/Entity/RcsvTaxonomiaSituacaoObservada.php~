@@ -1,0 +1,39 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RcsvTaxonomiaSituacaoObservada
+ *
+ * @ORM\Table(name="rcsv_taxonomia_situacao_observada")
+ * @ORM\Entity
+ */
+class RcsvTaxonomiaSituacaoObservada
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_situacao", type="string", length=100, nullable=true)
+     */
+    private $nomeSituacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descricao_situacao", type="string", length=100, nullable=true)
+     */
+    private $descricaoSituacao;
+
+
+}

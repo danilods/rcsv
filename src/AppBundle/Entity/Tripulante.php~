@@ -1,0 +1,53 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Tripulante
+ *
+ * @ORM\Table(name="tripulante", indexes={@ORM\Index(name="fk_temp_tripulante_temp_aeronave1_idx", columns={"temp_aeronave_id"})})
+ * @ORM\Entity
+ */
+class Tripulante
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="funcao_tripulante", type="string", length=45, nullable=true)
+     */
+    private $funcaoTripulante;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cod_anac", type="integer", nullable=true)
+     */
+    private $codAnac;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_tripulante", type="string", length=45, nullable=true)
+     */
+    private $nomeTripulante;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="temp_aeronave_id", type="integer", nullable=false)
+     */
+    private $tempAeronaveId;
+
+
+}

@@ -1,0 +1,52 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * OcorrenciaPartesAeronaveAtingida
+ *
+ * @ORM\Table(name="ocorrencia_partes_aeronave_atingida", indexes={@ORM\Index(name="fk_ocorrencia_partes_aeronave_atingida_ocorrencia_aeronave1_idx", columns={"ocorrencia_aeronave_id"}), @ORM\Index(name="fk_ocorrencia_partes_aeronave_atingida_taxonomia_partes_aer_idx", columns={"taxonomia_partes_aeronave_id"})})
+ * @ORM\Entity
+ */
+class OcorrenciaPartesAeronaveAtingida
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="danos", type="string", length=45, nullable=true)
+     */
+    private $danos;
+
+    /**
+     * @var \BalaoOcorrenciaAeronave
+     *
+     * @ORM\ManyToOne(targetEntity="BalaoOcorrenciaAeronave")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_aeronave_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrenciaAeronave;
+
+    /**
+     * @var \TaxonomiaPartesAeronave
+     *
+     * @ORM\ManyToOne(targetEntity="TaxonomiaPartesAeronave")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="taxonomia_partes_aeronave_id", referencedColumnName="id")
+     * })
+     */
+    private $taxonomiaPartesAeronave;
+
+
+}

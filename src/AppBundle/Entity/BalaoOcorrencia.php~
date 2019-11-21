@@ -1,0 +1,104 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BalaoOcorrencia
+ *
+ * @ORM\Table(name="balao_ocorrencia", indexes={@ORM\Index(name="fk_ocorrencia_aerodromo_geral1_idx", columns={"aerodromo_id"}), @ORM\Index(name="fk_ocorrencia_taxonomia_tipo_evento1_idx", columns={"tipo_evento_id"}), @ORM\Index(name="fk_balao_ocorrencia_geografia_cidade1_idx", columns={"cidade_id"})})
+ * @ORM\Entity
+ */
+class BalaoOcorrencia
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_ocorrencia", type="string", length=45, nullable=true)
+     */
+    private $tipoOcorrencia;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_ocorrencia", type="date", nullable=true)
+     */
+    private $dataOcorrencia;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="hora_local", type="time", nullable=true)
+     */
+    private $horaLocal;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="hora_utc", type="time", nullable=true)
+     */
+    private $horaUtc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reporte_atc_afis", type="string", length=100, nullable=true)
+     */
+    private $reporteAtcAfis;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condicoes_ceu", type="string", length=100, nullable=true)
+     */
+    private $condicoesCeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="historico", type="text", length=65535, nullable=true)
+     */
+    private $historico;
+
+    /**
+     * @var \GeografiaCidade
+     *
+     * @ORM\ManyToOne(targetEntity="GeografiaCidade")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cidade_id", referencedColumnName="id")
+     * })
+     */
+    private $cidade;
+
+    /**
+     * @var \AerodromoGeral
+     *
+     * @ORM\ManyToOne(targetEntity="AerodromoGeral")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="aerodromo_id", referencedColumnName="id")
+     * })
+     */
+    private $aerodromo;
+
+    /**
+     * @var \TaxonomiaTipoEvento
+     *
+     * @ORM\ManyToOne(targetEntity="TaxonomiaTipoEvento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_evento_id", referencedColumnName="id")
+     * })
+     */
+    private $tipoEvento;
+
+
+}

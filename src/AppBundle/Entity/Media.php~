@@ -1,0 +1,63 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Media
+ *
+ * @ORM\Table(name="media", indexes={@ORM\Index(name="fk_media_media", columns={"file_id"})})
+ * @ORM\Entity
+ */
+class Media
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=45, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="filename", type="string", length=45, nullable=true)
+     */
+    private $filename;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="file", type="string", length=45, nullable=true)
+     */
+    private $file;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
+    /**
+     * @var \MediaMedia
+     *
+     * @ORM\ManyToOne(targetEntity="MediaMedia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="file_id", referencedColumnName="id")
+     * })
+     */
+    private $file2;
+
+
+}

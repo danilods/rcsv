@@ -1,0 +1,53 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Lesao
+ *
+ * @ORM\Table(name="lesao", indexes={@ORM\Index(name="fk_temp_lesao_temp_aeronave1_idx", columns={"temp_aeronave_id"})})
+ * @ORM\Entity
+ */
+class Lesao
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="grau_lesao", type="string", length=45, nullable=true)
+     */
+    private $grauLesao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="funcao_bordo", type="string", length=45, nullable=true)
+     */
+    private $funcaoBordo;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantidade", type="integer", nullable=true)
+     */
+    private $quantidade;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="temp_aeronave_id", type="integer", nullable=false)
+     */
+    private $tempAeronaveId;
+
+
+}

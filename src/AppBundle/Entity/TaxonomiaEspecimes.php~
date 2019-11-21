@@ -1,0 +1,84 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TaxonomiaEspecimes
+ *
+ * @ORM\Table(name="taxonomia_especimes", indexes={@ORM\Index(name="fk_taxonomia_especimes_classificacao_familia1_idx", columns={"classificacao_familia_id"})})
+ * @ORM\Entity
+ */
+class TaxonomiaEspecimes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_popular", type="string", length=50, nullable=true)
+     */
+    private $nomePopular;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_cientifico", type="string", length=50, nullable=true)
+     */
+    private $nomeCientifico;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_cientifica_en", type="string", length=50, nullable=true)
+     */
+    private $nomeCientificaEn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tamanho_especime", type="string", length=15, nullable=true)
+     */
+    private $tamanhoEspecime;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="peso_especime", type="string", length=15, nullable=true)
+     */
+    private $pesoEspecime;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="distribuicao_geografica", type="string", length=100, nullable=true)
+     */
+    private $distribuicaoGeografica;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="habitos_alimentares", type="string", length=100, nullable=true)
+     */
+    private $habitosAlimentares;
+
+    /**
+     * @var \FaunaClassificacaoFamilia
+     *
+     * @ORM\ManyToOne(targetEntity="FaunaClassificacaoFamilia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="classificacao_familia_id", referencedColumnName="id")
+     * })
+     */
+    private $classificacaoFamilia;
+
+
+}

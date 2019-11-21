@@ -1,0 +1,70 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BalaoNotificador
+ *
+ * @ORM\Table(name="balao_notificador", indexes={@ORM\Index(name="fk_notificador_ocorrencia1_idx", columns={"ocorrencia_id"})})
+ * @ORM\Entity
+ */
+class BalaoNotificador
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=100, nullable=true)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="funcao", type="string", length=100, nullable=true)
+     */
+    private $funcao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone", type="string", length=45, nullable=true)
+     */
+    private $telefone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=50, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_notificacao", type="datetime", nullable=true)
+     */
+    private $dataNotificacao;
+
+    /**
+     * @var \BalaoOcorrencia
+     *
+     * @ORM\ManyToOne(targetEntity="BalaoOcorrencia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrencia;
+
+
+}

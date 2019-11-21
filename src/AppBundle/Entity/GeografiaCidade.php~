@@ -1,0 +1,73 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GeografiaCidade
+ *
+ * @ORM\Table(name="geografia_cidade", uniqueConstraints={@ORM\UniqueConstraint(name="uf_id", columns={"uf_id", "pais_id", "nome"})}, indexes={@ORM\Index(name="geografia_cidade_d617b6bc", columns={"uf_id"}), @ORM\Index(name="geografia_cidade_de1867db", columns={"pais_id"})})
+ * @ORM\Entity
+ */
+class GeografiaCidade
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=100, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=15, nullable=false)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitude", type="string", length=15, nullable=false)
+     */
+    private $longitude;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="altitude", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $altitude;
+
+    /**
+     * @var \GeografiaUf
+     *
+     * @ORM\ManyToOne(targetEntity="GeografiaUf")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="uf_id", referencedColumnName="id")
+     * })
+     */
+    private $uf;
+
+    /**
+     * @var \GeografiaPais
+     *
+     * @ORM\ManyToOne(targetEntity="GeografiaPais")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pais_id", referencedColumnName="id")
+     * })
+     */
+    private $pais;
+
+
+}

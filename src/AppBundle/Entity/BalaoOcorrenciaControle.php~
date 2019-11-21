@@ -1,0 +1,63 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * BalaoOcorrenciaControle
+ *
+ * @ORM\Table(name="balao_ocorrencia_controle", indexes={@ORM\Index(name="fk_ocorrencia_controle_ocorrencia2_idx", columns={"ocorrencia_id"})})
+ * @ORM\Entity
+ */
+class BalaoOcorrenciaControle
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="situacao_ocorrencia", type="string", length=100, nullable=true)
+     */
+    private $situacaoOcorrencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prioridade", type="string", length=45, nullable=true)
+     */
+    private $prioridade;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fase_atual", type="string", length=50, nullable=true)
+     */
+    private $faseAtual;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status_acompanhamento", type="integer", nullable=true)
+     */
+    private $statusAcompanhamento;
+
+    /**
+     * @var \BalaoOcorrencia
+     *
+     * @ORM\ManyToOne(targetEntity="BalaoOcorrencia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ocorrencia_id", referencedColumnName="id")
+     * })
+     */
+    private $ocorrencia;
+
+
+}
